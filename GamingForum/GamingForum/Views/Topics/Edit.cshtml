@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<form method="post" action="/Topics/Edit/@ViewBag.Topic.Id">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <label>Titlu topic</label>
+    <br />
+    <input type="text" name="Title" value="@ViewBag.Topic.Title" />
+    <br /><br />
+    <label>Continut topic</label>
+    <br />
+    <input type="text" name="Content" value="@ViewBag.Topic.Content" />
+    <br /><br />
+    <label>Data</label>
+    <br />
+    <input type="text" name="Date" value="@ViewBag.Topic.Date" />
+    <br />
+    <select name="CategoryId">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option @{ if (category.CategoryId == ViewBag.Category.CategoryId) { @: selected="selected"
+                    } }
+                    value="@category.CategoryId">
+                @category.CategoryName
+                </option>
+            }
+    </select>
+    <br />
+    <button type="submit">Modifica topic</button>
+</form>

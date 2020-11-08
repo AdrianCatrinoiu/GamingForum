@@ -13,10 +13,10 @@ namespace GamingForum.Models
         [Required]
         public string Content { get; set; }
         public DateTime Date { get; set; }
-        public int ArticleId { get; set; }
+        public int TopicId { get; set; }
 
 
-        public virtual Article Article { get; set; }
+        public virtual Topic Topic { get; set; }
     }
 
 }

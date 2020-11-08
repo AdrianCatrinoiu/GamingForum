@@ -13,7 +13,7 @@ namespace GamingForum.Models
         [Required]
         public string CategoryName { get; set; }
 
-        public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Topic> Topics { get; set; }
     }
 
     

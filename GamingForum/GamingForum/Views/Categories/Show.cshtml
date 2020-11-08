@@ -1,7 +1,7 @@
 ﻿<h1>Afisare categorie</h1>
 <h2>@ViewBag.Category.CategoryId</h2>
 <p>Categorie: @ViewBag.Category.CategoryName</p>
-<a href="/Categories/Edit/@ViewBag.Category.CategoryId">Modifica articol</a>
+<a href="/Categories/Edit/@ViewBag.Category.CategoryId">Modifica categorie</a>
 <form method="post" action="/Categories/Delete/@ViewBag.Category.CategoryId">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
     <button type="submit">Sterge categorie</button>
@@ -11,3 +11,4 @@
 <br />
 <a href="/Categories/New">Adauga categorie</a>
 <br />
+<a href="/Topics/Index">Inapoi la topic-uri</a>

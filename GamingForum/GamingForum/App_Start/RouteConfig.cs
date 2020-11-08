@@ -16,7 +16,7 @@ namespace GamingForum
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Articles", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Topics", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

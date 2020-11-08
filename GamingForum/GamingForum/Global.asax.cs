@@ -15,7 +15,7 @@ namespace GamingForum
         protected void Application_Start()
         {
             //am creat appcontext deci nu mai trb
-            //Database.SetInitializer<ArticleDBContext>(new DropCreateDatabaseIfModelChanges<ArticleDBContext>());
+            //Database.SetInitializer<TopicDBContext>(new DropCreateDatabaseIfModelChanges<TopicDBContext>());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

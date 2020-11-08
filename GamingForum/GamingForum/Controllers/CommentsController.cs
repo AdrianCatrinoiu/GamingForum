@@ -22,7 +22,7 @@ namespace GamingForum.Controllers
             Comment comment = db.Comments.Find(id);
             db.Comments.Remove(comment);
             db.SaveChanges();
-            return Redirect("/Articles/Show/" + comment.ArticleId);
+            return Redirect("/Topics/Show/" + comment.TopicId);
         }
         [HttpPost]
         public ActionResult New(Comment comment)
@@ -32,10 +32,10 @@ namespace GamingForum.Controllers
             {
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return Redirect("/Articles/Show" + comment.ArticleId);
+                return Redirect("/Topics/Show/" + comment.TopicId);
             }catch(Exception e)
             {
-                return Redirect("/Articles/Show" + comment.ArticleId);
+                return Redirect("/Topics/Show/" + comment.TopicId);
             }
           
         }
@@ -58,7 +58,7 @@ namespace GamingForum.Controllers
                     comment.Content = requestComment.Content;
                     db.SaveChanges();
                 }
-                return Redirect("/Articles/Show" + comment.ArticleId);
+                return Redirect("/Topics/Show" + comment.TopicId);
             }catch(Exception e)
             {
                 return View();

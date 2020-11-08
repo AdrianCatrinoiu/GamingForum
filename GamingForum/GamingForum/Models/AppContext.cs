@@ -13,7 +13,7 @@ namespace GamingForum.Models
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppContext,
             GamingForum.Migrations.Configuration>("DBConnectionString"));
         }
-        public DbSet<Article> Articles { get; set; }
+        public DbSet<Topic> Topics { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
     }

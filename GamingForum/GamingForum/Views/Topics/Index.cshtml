@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Afisare topic-uri</h2>
+<a class="btn btn-primary" href="/Topics/New">Adauga un topic</a>
+
+<a class="btn btn-primary" href="/Categories/Index">Afisare categorii</a>
+
+@foreach (var topic in ViewBag.Topics)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@topic.Title</div>
+        <div class="panel-body">
+            Continut topic: <strong>@topic.Content</strong>
+            <br />
+            <span class="label label-success">@topic.Date</span>
+            <br />
+            <i class="glyphicon glyphicon-globe"></i> @topic.Category.CategoryName
+        </div>
+        <div class="panel panel-footer">
+            <a class="btn btn-success" href="/Topics/Show/@topic.Id">Afisare topic</a>
+        </div>
+    </div>
+
+
+}
