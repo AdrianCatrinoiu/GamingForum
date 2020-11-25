@@ -10,6 +10,8 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+            ContextKey = "GamingForum.AppContext";
         }
 
         protected override void Seed(GamingForum.Models.AppContext context)

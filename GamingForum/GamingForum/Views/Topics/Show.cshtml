@@ -1,27 +1,23 @@
-﻿<a href="/Topics/Index">Inapoi la topic-uri</a>
+﻿@model GamingForum.Models.Topic
+<a href="/Topics/Index">Inapoi la topic-uri</a>
 <br />
 <a class="btn btn-info" href="/Topics/New">Adauga un nou topic</a>
 <br />
 <div class="panel panel-default">
-    <div class="panel-heading">@ViewBag.Topic.Title</div>
-    <div class="panel-body">
-        Continut topic: <strong>@ViewBag.Topic.Content</strong>
-        <br />
-        <span class="label label-success">@ViewBag.Topic.Date</span>
-        <br />
-        <i class="glyphicon glyphicon-globe"></i> @ViewBag.Category.CategoryName
-        <br />
-        <hr>
+    @Html.Partial("TopicInfo", Model)
+
+    <div class="panel-footer">
         <a class="btn btn-success pull-left"
            href="/Topics/Edit/@ViewBag.Topic.Id">Modifica topic-ul</a>
-        <form method="post" action="/Topics/Delete/@ViewBag.Topic.Id">
+        
+        @using (Html.BeginForm(actionName: "Delete", controllerName: "Topics", method:
+            FormMethod.Post, routeValues: new { id = Model.Id }))
+        {
             @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="btn btn-danger pull-right" type="submit">
-                Sterge
-                topic-ul
-            </button>
-        </form>
-    </div>
+            <button class="btn btn-danger pull-right" type="submit">Sterge Topic</button>
+        }
+        <div class="clearfix"></divclass="clearfix">
+    </div >
 </div>
 <br />
 @foreach (var comm in ViewBag.Topic.Comments)

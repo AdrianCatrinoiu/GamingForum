@@ -24,7 +24,7 @@ namespace GamingForum.Controllers
             Topic topic = db.Topics.Find(id);
             ViewBag.Topic = topic;
             ViewBag.Category = topic.Category;
-            return View();
+            return View(topic);
 
         }
 
@@ -40,48 +40,64 @@ namespace GamingForum.Controllers
         [HttpPost]
         public ActionResult New(Topic topic)
         {
+            topic.Categ = GetAllCategories();
             topic.Date = DateTime.Now;
             try
             {
-                db.Topics.Add(topic);
-                db.SaveChanges();
-                TempData["message"] = "Articolul a fost adaugat!";
-                return RedirectToAction("Index");
+                if(ModelState.IsValid)
+                {
+                    db.Topics.Add(topic);
+                    db.SaveChanges();
+                    TempData["message"] = "Topic-ul a fost adaugat!";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(topic);
+                }
+                
             } catch(Exception e)
             {
-                return View();
+                return View(topic);
             }
              
         }
         public ActionResult Edit(int id)
         {
             Topic topic = db.Topics.Find(id);
-            ViewBag.Topic = topic;
-            ViewBag.Category = topic.Category;
-            var categories = from cat in db.Categories select cat;
-            ViewBag.Categories = categories;
-            return View();
+            topic.Categ = GetAllCategories();
+            
+            return View(topic);
         }
 
         [HttpPut]
         public ActionResult Edit(int id, Topic requestTopic)
         {
+            requestTopic.Categ = GetAllCategories();
             try
             {
-                Topic topic = db.Topics.Find(id);
-                if (TryUpdateModel(topic))
+                if(ModelState.IsValid)
                 {
-                    topic.Title = requestTopic.Title;
-                    topic.Content = requestTopic.Content;
-                    topic.Date = requestTopic.Date;
-                    topic.CategoryId = requestTopic.CategoryId;
-                    db.SaveChanges();
+                    Topic topic = db.Topics.Find(id);
+                    if (TryUpdateModel(topic))
+                    {
+
+                        topic.Title = requestTopic.Title;
+                        topic.Content = requestTopic.Content;
+                        topic.CategoryId = requestTopic.CategoryId;
+                        db.SaveChanges();
+                        TempData["message"] = "Topic-ul a fost modificat!";
+                    }
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                else
+                {
+                    return View(requestTopic);
+                }
             }
             catch (Exception e)
             {
-                return View();
+                return View(requestTopic);
             }
         }
 

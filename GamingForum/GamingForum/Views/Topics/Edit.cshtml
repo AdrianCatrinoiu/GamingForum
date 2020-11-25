@@ -1,33 +1,33 @@
-﻿
+﻿@model GamingForum.Models.Topic
+
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
-<form method="post" action="/Topics/Edit/@ViewBag.Topic.Id">
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Topics"))
+{
     @Html.HttpMethodOverride(HttpVerbs.Put)
-    <label>Titlu topic</label>
     <br />
-    <input type="text" name="Title" value="@ViewBag.Topic.Title" />
+    @Html.HiddenFor(m => m.Id)
+    @Html.Label("Title", "Titlu Topic")
+    <br />
+    @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
+
     <br /><br />
-    <label>Continut topic</label>
+    @Html.Label("Content", "Continut Topic")
     <br />
-    <input type="text" name="Content" value="@ViewBag.Topic.Content" />
-    <br /><br />
-    <label>Data</label>
+    @Html.Editor("Content", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("Content", "", new { @class = "text-danger" }) <br /><br />
     <br />
-    <input type="text" name="Date" value="@ViewBag.Topic.Date" />
     <br />
-    <select name="CategoryId">
-        @foreach (var category in ViewBag.Categories)
-        {
-            <option @{ if (category.CategoryId == ViewBag.Category.CategoryId) { @: selected="selected"
-                    } }
-                    value="@category.CategoryId">
-                @category.CategoryName
-                </option>
-            }
-    </select>
+    <label>Selectati Categoria:</label>
+    @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value","Text"),"Selectati categoria", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "text-danger" })
+
     <br />
-    <button type="submit">Modifica topic</button>
-</form>
+    <button class="btn btn-sm btn-success" type="submit">Modifica topic</button>
+}
+
+

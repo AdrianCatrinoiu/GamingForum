@@ -12,11 +12,19 @@ namespace GamingForum.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage ="Titlul topic-ului este obligatoriu!")]
+        [StringLength(100, ErrorMessage ="Titlul nu poate avea mai mult de 100 de caractere!")]
         public string Title { get; set; }
-        [Required]
+
+        [Required(ErrorMessage ="Continutul topic-ului este obligatoriu!")]
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
+
+
         public DateTime Date { get; set; }
+
+        [Required(ErrorMessage ="Categoria este obligatorie")]
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }

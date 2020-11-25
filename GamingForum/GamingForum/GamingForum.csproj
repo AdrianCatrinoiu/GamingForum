@@ -190,6 +190,7 @@
     <Content Include="Views\Categories\New.cshtml" />
     <Content Include="Views\Categories\Show.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Shared\TopicInfo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

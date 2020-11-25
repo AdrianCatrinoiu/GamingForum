@@ -1,18 +1,29 @@
 ﻿@model GamingForum.Models.Topic
 <h2>Adaugare topic</h2>
-<form method="post" action="/Topics/New">
+@using (Html.BeginForm(actionName: "New", controllerName: "Topics"))
+
+{
+    @Html.ValidationSummary(false, null, new { @class="text-danger"})
     @Html.Label("Title", "Titlu Articol")
     <br />
     @Html.TextBox("Title", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
     <br /><br />
     @Html.Label("Content", "Continut Topic")
     <br />
     @Html.TextArea("Content", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+
     <br /><br />
     <label>Selectati categoria</label>
     @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value",
    "Text"),
     "Selectati categoria", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "text-danger" })
+
     <br />
     <button class="btn btn-sm btn-success" type="submit">Adauga un topic</button>
-</form>
+
+}
+
+
