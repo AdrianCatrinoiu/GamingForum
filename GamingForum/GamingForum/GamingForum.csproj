@@ -191,6 +191,7 @@
     <Content Include="Views\Categories\Show.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Shared\TopicInfo.cshtml" />
+    <Content Include="Views\Shared\CategoryInfo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

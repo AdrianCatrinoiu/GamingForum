@@ -1,10 +1,14 @@
-﻿<h2>Edit</h2>
-<form method="post" action="/Categories/Edit/@ViewBag.Category.CategoryId">
+﻿@model GamingForum.Models.Category
+<h2>Editare categorie</h2>
+<form method="post" action="/Categories/Edit/@Model.CategoryId">
     @Html.HttpMethodOverride(HttpVerbs.Put)
-    <label>Titlu categorie</label>
-    <br />
-    <input type="text" name="CategoryName" value="@ViewBag.Category.CategoryName" />
-    <br /><br />
-    
+    @Html.HiddenFor(m => m.CategoryId)
+    @Html.Label("CategoryName", "Denumire Categorie")
+    <br/><br/>
+    @Html.Editor("CategoryName")
+    <br/>
+
+
+
     <button type="submit">Modifica categorie</button>
 </form>

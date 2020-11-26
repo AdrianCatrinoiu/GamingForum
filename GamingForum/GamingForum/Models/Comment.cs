@@ -10,7 +10,8 @@ namespace GamingForum.Models
     {
         [Key]
         public int CommentId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Comentariul nu poate fi gol.")]
+        [StringLength(500,ErrorMessage = "Comentariul depaseste limita de caractere(500).")]
         public string Content { get; set; }
         public DateTime Date { get; set; }
         public int TopicId { get; set; }

@@ -1,11 +1,12 @@
-﻿@{
-    ViewBag.Title = "New";
+﻿@model GamingForum.Models.Category
+@{
+    ViewBag.Title = "Adaugare Categorie";
 }
 <h2>Adaugare categorie</h2>
 <form method="post" action="/Categories/New">
-    <label>Nume Categorie</label>
-    <input type="text" name="CategoryName" />
+@Html.Label("CategoryName","Nume Categorie")
+@Html.TextBox("CategoryName", null, new {@class = "form-control" })
     <br />
 
-    <button type="submit">Adauga categorie</button>
+    <button class="btn btn-success" type="submit">Adauga categorie</button>
 </form>

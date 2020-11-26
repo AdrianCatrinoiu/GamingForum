@@ -1,16 +1,25 @@
-﻿
+﻿@model GamingForum.Models.Category
 @{
     ViewBag.Title = "Index";
 }
+@if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    <script type="text/javascript">
+        alert("@ViewBag.message");
+    </script>
+}
+
 
 <h2>Afisare categorii</h2>
+@Html.Label("CategoryName", "Nume Categorii:")
+<br/>
 @foreach (var category in ViewBag.Categories)
 {
-    <h1>@category.CategoryId</h1>
-    <p>@category.CategoryName</p>
-    <a href="/Categories/Show/@category.CategoryId">Afisare categorie</a>
-    <a href="/Categories/Edit/@category.CategoryId">Editeaza categorie</a>
+
+<p>@category.CategoryName</p>
+<a class="btn btn-success" href="/Categories/Show/@category.CategoryId">Afisare categorie</a>
+<a class="btn btn-success" href="/Categories/Edit/@category.CategoryId">Editeaza categorie</a>
 
 }
-<br />
-<a href="/Categories/New">Adauga categorie</a>
+<br /><br /><br />
+<a class="btn btn-default" href="/Categories/New">Adauga categorie</a>

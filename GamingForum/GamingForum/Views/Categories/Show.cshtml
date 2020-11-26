@@ -1,14 +1,18 @@
-﻿<h1>Afisare categorie</h1>
-<h2>@ViewBag.Category.CategoryId</h2>
-<p>Categorie: @ViewBag.Category.CategoryName</p>
-<a href="/Categories/Edit/@ViewBag.Category.CategoryId">Modifica categorie</a>
-<form method="post" action="/Categories/Delete/@ViewBag.Category.CategoryId">
-    @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button type="submit">Sterge categorie</button>
-</form>
-<hr />
-<a href="/Categories/Index">Inapoi la categorii</a>
-<br />
-<a href="/Categories/New">Adauga categorie</a>
-<br />
-<a href="/Topics/Index">Inapoi la topic-uri</a>
+﻿@model GamingForum.Models.Category
+@{
+    ViewBag.Title = "Lista Categorii: ";
+}
+<br/>
+<p>Categorie: @Model.CategoryName</p>
+<div class="panel panel-default">
+    @Html.Partial("CategoryInfo", Model)
+    <form method="post" action="/Categories/Delete/@Model.CategoryId">
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-danger" type="submit">Sterge categorie</button>
+    </form>
+
+    <hr />
+    <a class="btn btn-info" href="/Categories/Index">Inapoi la categorii</a>
+    <a class="btn btn-info" href="/Categories/Index">Inapoi la topic-uri</a>
+
+</div>

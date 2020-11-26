@@ -10,7 +10,8 @@ namespace GamingForum.Models
     {
         [Key]
         public int CategoryId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Numele categoriei este obligatoriu.")]
+        [StringLength(50,ErrorMessage = "Numele categoriei are peste 50 de caractere.")]
         public string CategoryName { get; set; }
 
         public virtual ICollection<Topic> Topics { get; set; }

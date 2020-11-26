@@ -16,6 +16,11 @@ namespace GamingForum.Controllers
         {
             var topics=db.Topics.Include("Category");
             ViewBag.Topics = topics;
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.message = TempData["message"].ToString();
+            }
+
             return View();
         }
 
@@ -107,6 +112,7 @@ namespace GamingForum.Controllers
             Topic topic = db.Topics.Find(id);
             db.Topics.Remove(topic);
             db.SaveChanges();
+            TempData["message"] = "Topic-ul a fost sters!";
             return RedirectToAction("Index");
         }
 

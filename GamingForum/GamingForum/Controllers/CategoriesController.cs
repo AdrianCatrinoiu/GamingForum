@@ -14,6 +14,11 @@ namespace GamingForum.Controllers
         // GET: Categories
         public ActionResult Index()
         {
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.message = TempData["message"].ToString();
+            }
+
             var categories = from category in db.Categories
                              orderby category.CategoryName
                              select category;
@@ -24,7 +29,7 @@ namespace GamingForum.Controllers
         {
             Category category = db.Categories.Find(id);
             ViewBag.Category = category;
-            return View();
+            return View(category);
 
         }
 
@@ -39,40 +44,57 @@ namespace GamingForum.Controllers
         {
             try
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid) {
+
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    TempData["message"] = "Categoria a fost adaugata.";
+                    return RedirectToAction("Index");
+                }
+                else { return View(category); }
+
+
             }
             catch (Exception e)
             {
-                return View();
+                return View(category);
             }
 
         }
+
+
         public ActionResult Edit(int id)
         {
             Category category = db.Categories.Find(id);
             ViewBag.Category = category;
-            return View();
+            return View(category);
         }
 
         [HttpPut]
         public ActionResult Edit(int id, Category requestCategory)
         {
-            try
+            try 
             {
                 Category category = db.Categories.Find(id);
-                if (TryUpdateModel(category))
+                if (ModelState.IsValid)//delete if it won't work
                 {
-                    category.CategoryName = requestCategory.CategoryName;
-                    db.SaveChanges();
+                    if (TryUpdateModel(category))
+                    {
+                        category.CategoryName = requestCategory.CategoryName;
+                        db.SaveChanges();
+                        TempData["message"] = "Categoria a fost modificata.";
+                        return RedirectToAction("Index");
+                    }
+                    return View(requestCategory);
+
                 }
-                return RedirectToAction("Index");
+                return View(requestCategory);
             }
             catch (Exception e)
             {
-                return View();
+                return View(requestCategory);
             }
+
         }
 
         [HttpDelete]
@@ -81,6 +103,7 @@ namespace GamingForum.Controllers
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
             db.SaveChanges();
+            TempData["message"] = "Categoria a fost eliminata.";
             return RedirectToAction("Index");
         }
     }
