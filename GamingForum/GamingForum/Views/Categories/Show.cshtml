@@ -4,6 +4,11 @@
 }
 <br/>
 <p>Categorie: @Model.CategoryName</p>
+
+<div class="panel panel-heading">
+    <a class="btn btn-info" href="/Categories/Index">Inapoi la categorii</a>
+    <a class="btn btn-info" href="/Categories/Index">Inapoi la topic-uri</a>
+</div>
 <div class="panel panel-default">
     @Html.Partial("CategoryInfo", Model)
     <form method="post" action="/Categories/Delete/@Model.CategoryId">
@@ -12,7 +17,6 @@
     </form>
 
     <hr />
-    <a class="btn btn-info" href="/Categories/Index">Inapoi la categorii</a>
-    <a class="btn btn-info" href="/Categories/Index">Inapoi la topic-uri</a>
+
 
 </div>

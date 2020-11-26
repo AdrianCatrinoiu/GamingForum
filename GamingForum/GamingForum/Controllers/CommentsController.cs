@@ -30,10 +30,15 @@ namespace GamingForum.Controllers
             comment.Date = DateTime.Now;
             try
             {
-                db.Comments.Add(comment);
-                db.SaveChanges();
-                return Redirect("/Topics/Show/" + comment.TopicId);
-            }catch(Exception e)
+                
+                    db.Comments.Add(comment);
+                    db.SaveChanges();
+                    TempData["message"] = "Comentariul a fost adaugat!";
+                    return Redirect("/Topics/Show/" + comment.TopicId);
+                
+
+            }
+            catch(Exception e)
             {
                 return Redirect("/Topics/Show/" + comment.TopicId);
             }
@@ -56,6 +61,7 @@ namespace GamingForum.Controllers
                 if(TryUpdateModel(comment))
                 {
                     comment.Content = requestComment.Content;
+                    TempData["message"] = "Comentariul a fost modificat!";
                     db.SaveChanges();
                 }
                 return Redirect("/Topics/Show" + comment.TopicId);

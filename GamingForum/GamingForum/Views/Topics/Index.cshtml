@@ -10,9 +10,12 @@
 }
 
 <h2>Afisare topic-uri</h2>
-<a class="btn btn-primary" href="/Topics/New">Adauga un topic</a>
+<div class="panel panel-heading">
+    <a class="btn btn-primary" href="/Topics/New">Adauga un topic</a>
 
-<a class="btn btn-primary" href="/Categories/Index">Afisare categorii</a>
+    <a class="btn btn-primary" href="/Categories/Index">Afisare categorii</a>
+</div>
+
 
 @foreach (GamingForum.Models.Topic topic in ViewBag.Topics)
 {

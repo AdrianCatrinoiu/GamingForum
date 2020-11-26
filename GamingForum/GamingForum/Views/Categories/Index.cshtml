@@ -11,15 +11,22 @@
 
 
 <h2>Afisare categorii</h2>
-@Html.Label("CategoryName", "Nume Categorii:")
+<div class="panel panel-heading">
+    @Html.Label("CategoryName", "Nume Categorii:")
+
+</div>
 <br/>
-@foreach (var category in ViewBag.Categories)
-{
+<div class="panel panel-body">
+    @foreach (var category in ViewBag.Categories)
+    {
 
-<p>@category.CategoryName</p>
-<a class="btn btn-success" href="/Categories/Show/@category.CategoryId">Afisare categorie</a>
-<a class="btn btn-success" href="/Categories/Edit/@category.CategoryId">Editeaza categorie</a>
+        <p>@category.CategoryName</p>
+        <a class="btn btn-success" href="/Categories/Show/@category.CategoryId">Afisare categorie</a>
+        <a class="btn btn-success" href="/Categories/Edit/@category.CategoryId">Editeaza categorie</a>
 
-}
-<br /><br /><br />
-<a class="btn btn-default" href="/Categories/New">Adauga categorie</a>
+    }
+    <br /><br /><br />
+    <a class="btn btn-default" href="/Categories/New">Adauga categorie</a>
+
+</div>
+

@@ -4,8 +4,10 @@
 }
 <h2>Adaugare categorie</h2>
 <form method="post" action="/Categories/New">
-@Html.Label("CategoryName","Nume Categorie")
-@Html.TextBox("CategoryName", null, new {@class = "form-control" })
+    @Html.ValidationSummary(false, null, new { @class = "text-danger" })
+
+    @Html.Label("CategoryName", "Nume Categorie")
+    @Html.TextBox("CategoryName", null, new { @class = "form-control" })
     <br />
 
     <button class="btn btn-success" type="submit">Adauga categorie</button>
