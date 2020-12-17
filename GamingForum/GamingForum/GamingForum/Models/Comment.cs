@@ -16,6 +16,9 @@ namespace GamingForum.Models
         public DateTime Date { get; set; }
         public int TopicId { get; set; }
 
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
 
         public virtual Topic Topic { get; set; }
     }

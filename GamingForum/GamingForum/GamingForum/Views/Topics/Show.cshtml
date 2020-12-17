@@ -1,7 +1,11 @@
 ﻿@model GamingForum.Models.Topic
 <div class="panel panel-heading">
     <a class="btn btn-info" href="/Topics/Index">Inapoi la topic-uri</a>
-    <a class="btn btn-info" href="/Topics/New">Adauga un nou topic</a>
+    @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+    {
+        <a class="btn btn-info" href="/Topics/New">Adauga un nou topic</a>
+    }
+        
 </div>
 
 <br />
@@ -31,6 +35,7 @@
 
 
         <br />
+        <p>Comentarii:</p>
         @foreach (var comm in ViewBag.Topic.Comments)
         {
             <div class="container">
@@ -66,29 +71,35 @@ background: transparent" type="submit"></button>
             </div>
             <hr />
         }
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <div class="panel">
-                        <form method="post" action="/Comments/New">
-                            <div class="panel-body">
-                                <input type="hidden" name="TopicId"
-                                       value="@ViewBag.Topic.Id" />
-                                <label>Continut comentariu</label>
-                                <br />
-                                <textarea class="form-control" name="Content"></textarea>
-                                <br />
-                                <button class="btn btn-success " type="submit">
-                                    Adauga
-                                    comentariu
-                                </button>
-                            </div>
-                        </form>
+        @if (ViewBag.afisareButoane == true || ViewBag.esteUser)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
                     </div>
+                    <div class="col-md-8">
+                        <div class="panel">
+                            <form method="post" action="/Comments/New">
+                                <div class="panel-body">
+                                    <input type="hidden" name="TopicId"
+                                           value="@ViewBag.Topic.Id" />
+                                    <label>Continut comentariu</label>
+                                    <br />
+                                    <textarea class="form-control" name="Content"></textarea>
+                                    <br />
+
+                                    <button class="btn btn-success " type="submit">
+                                        Adauga
+                                        comentariu
+                                    </button>
+                                    
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
                 </div>
-                <div class="col-md-2"></div>
             </div>
+        }
         </div>
-    </div>

@@ -14,7 +14,7 @@ namespace GamingForum.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Topics
-        [Authorize(Roles ="User,Editor,Admin")]
+        //[Authorize(Roles ="User,Editor,Admin")]
         public ActionResult Index()
         {
             var topics=db.Topics.Include("Category").Include("User");
@@ -23,10 +23,16 @@ namespace GamingForum.Controllers
             {
                 ViewBag.message = TempData["message"].ToString();
             }
+            ViewBag.esteAdmin = User.IsInRole("Admin");
+
+            if (User.IsInRole("Editor") || User.IsInRole("Admin") || User.IsInRole("User"))
+            {
+                ViewBag.afisareButoane = true;
+            }
 
             return View();
         }
-        [Authorize(Roles = "User,Editor,Admin")]
+        //[Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Show(int id)
         {
             Topic topic = db.Topics.Find(id);
@@ -36,6 +42,7 @@ namespace GamingForum.Controllers
             {
                 ViewBag.afisareButoane = true;
             }
+            ViewBag.esteUser = User.IsInRole("User");
             ViewBag.esteAdmin = User.IsInRole("Admin");
             ViewBag.utilizatorCurent = User.Identity.GetUserId();
 
@@ -89,8 +96,11 @@ namespace GamingForum.Controllers
         {
             Topic topic = db.Topics.Find(id);
             topic.Categ = GetAllCategories();
+            ViewBag.esteAdmin = User.IsInRole("Admin");
+            ViewBag.esteModerator = User.IsInRole("Editor");
+            ViewBag.utilizatorCurent = User.Identity.GetUserId();
 
-            if(topic.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
+            if (topic.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
             {
                 return View(topic);
             }
@@ -107,6 +117,10 @@ namespace GamingForum.Controllers
         public ActionResult Edit(int id, Topic requestTopic)
         {
             requestTopic.Categ = GetAllCategories();
+            ViewBag.esteAdmin = User.IsInRole("Admin");
+            ViewBag.esteModerator = User.IsInRole("Editor");
+            ViewBag.utilizatorCurent = User.Identity.GetUserId();
+
             try
             {
                 if(ModelState.IsValid)
@@ -148,7 +162,8 @@ namespace GamingForum.Controllers
         public ActionResult Delete(int id)
         {
             Topic topic = db.Topics.Find(id);
-
+            ViewBag.esteAdmin = User.IsInRole("Admin");
+            ViewBag.esteModerator = User.IsInRole("Editor");
             if (topic.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
             {
                 db.Topics.Remove(topic);

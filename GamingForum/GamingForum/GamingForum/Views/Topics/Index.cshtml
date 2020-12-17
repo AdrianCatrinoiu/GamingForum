@@ -10,11 +10,18 @@
 }
 
 <h2>Afisare topic-uri</h2>
+@if (ViewBag.afisareButoane == true)
+{
 <div class="panel panel-heading">
     <a class="btn btn-primary" href="/Topics/New">Adauga un topic</a>
+    @if (ViewBag.esteAdmin == true)
+    {
+        <a class="btn btn-primary" href="/Categories/Index">Afisare categorii</a>
 
-    <a class="btn btn-primary" href="/Categories/Index">Afisare categorii</a>
+    }
 </div>
+}
+
 
 
 @foreach (GamingForum.Models.Topic topic in ViewBag.Topics)
