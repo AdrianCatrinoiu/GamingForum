@@ -85,6 +85,7 @@ namespace GamingForum.Controllers
             {
                 ViewBag.afisareButoane = true;
             }
+            ViewBag.esteModerator = User.IsInRole("Editor");
             ViewBag.esteUser = User.IsInRole("User");
             ViewBag.esteAdmin = User.IsInRole("Admin");
             ViewBag.utilizatorCurent = User.Identity.GetUserId();
@@ -143,7 +144,7 @@ namespace GamingForum.Controllers
             ViewBag.esteModerator = User.IsInRole("Editor");
             ViewBag.utilizatorCurent = User.Identity.GetUserId();
 
-            if (topic.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
+            if (topic.UserId == User.Identity.GetUserId() || User.IsInRole("Admin")||User.IsInRole("Editor"))
             {
                 return View(topic);
             }
@@ -169,7 +170,7 @@ namespace GamingForum.Controllers
                 if(ModelState.IsValid)
                 {
                     Topic topic = db.Topics.Find(id);
-                    if (topic.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
+                    if (topic.UserId == User.Identity.GetUserId() || User.IsInRole("Admin")||User.IsInRole("Editor"))
                     {
                         if (TryUpdateModel(topic))
                         {

@@ -17,21 +17,26 @@
 }
     <div class="panel panel-default">
         @Html.Partial("TopicInfo", Model)
-        @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
-        {
-            <div class="panel-footer">
+        
+        <div class="panel-footer">
+            @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin||ViewBag.esteModerator)
+            {
                 <a class="btn btn-success pull-left"
                    href="/Topics/Edit/@ViewBag.Topic.Id">Modifica topic-ul</a>
+            }
 
-                @using (Html.BeginForm(actionName: "Delete", controllerName: "Topics", method:
+            @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+            {
+                using (Html.BeginForm(actionName: "Delete", controllerName: "Topics", method:
                     FormMethod.Post, routeValues: new { id = Model.Id }))
                 {
                     @Html.HttpMethodOverride(HttpVerbs.Delete)
                     <button class="btn btn-danger pull-right" type="submit">Sterge Topic</button>
                 }
-                <div class="clearfix"></div>
-            </div>
-        }
+            }
+            <div class="clearfix"></div>
+        </div>
+       
 
 
         <br />
