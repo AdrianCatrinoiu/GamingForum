@@ -7,6 +7,12 @@ using System.Web.Mvc;
 
 namespace GamingForum.Controllers
 {
+
+    static class Globals
+    {
+        public static int sortare = 0;
+    }
+
     [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
@@ -20,10 +26,21 @@ namespace GamingForum.Controllers
                 ViewBag.message = TempData["message"].ToString();
             }
 
-            var categories = from category in db.Categories
-                             orderby category.CategoryName
-                             select category;
-            ViewBag.Categories= categories;
+            if (Globals.sortare == 1)
+            {
+                var categories = from category in db.Categories
+                                 orderby category.CategoryName
+                                 select category;
+                ViewBag.Categories = categories;
+            }
+            if (Globals.sortare == 0)
+            {
+                var categories = from category in db.Categories
+                                 orderby category.CategoryId
+                                 select category;
+                ViewBag.Categories = categories;
+            }
+
             return View();
         }
         public ActionResult Show(int id)
@@ -107,5 +124,13 @@ namespace GamingForum.Controllers
             TempData["message"] = "Categoria a fost eliminata.";
             return RedirectToAction("Index");
         }
+        public ActionResult Reorder(int id)
+        {
+            Globals.sortare = id;
+            TempData["message"] = "Categoria a fost sortata.";
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

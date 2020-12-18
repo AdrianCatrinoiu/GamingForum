@@ -15,7 +15,7 @@
     @Html.Label("CategoryName", "Nume Categorii:")
 
 </div>
-<br/>
+<br />
 <div class="panel panel-body">
 
     @foreach (GamingForum.Models.Category category in ViewBag.Categories)
@@ -24,10 +24,14 @@
         @Html.Partial("CategoryInfo", category)
         <a class="btn btn-success" href="/Categories/Show/@category.CategoryId">Afisare categorie</a>
         <a class="btn btn-success" href="/Categories/Edit/@category.CategoryId">Editeaza categorie</a>
-        <br/><br />
+        <br /><br />
     }
     <br /><br /><br />
     <a class="btn btn-default" href="/Categories/New">Adauga categorie</a>
 
 </div>
-
+@Html.DropDownList("Sortby", new SelectListItem[] { new SelectListItem()
+{ Text = "Sort by:", Value = "2" }, new SelectListItem()
+{ Text = "Sortare dupa id", Value = "0" }, new SelectListItem()
+{ Text = "Sortare dupa nume", Value = "1" }},
+new { onchange = "document.location.href = '/Categories/Reorder/' + this.options[this.selectedIndex].value;" })

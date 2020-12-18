@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,12 +14,46 @@ namespace GamingForum.Controllers
     public class TopicsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        private int _perPage = 4;
+
         // GET: Topics
         //[Authorize(Roles ="User,Editor,Admin")]
         public ActionResult Index()
         {
-            var topics=db.Topics.Include("Category").Include("User");
+            var topics=db.Topics.Include("Category").Include("User").OrderBy(a => a.Title);
+            var search = "";
+            if (Request.Params.Get("search")!=null)
+            {
+                search = Request.Params.Get("search").Trim();
+                List<int> topicIds = db.Topics.Where(
+                    at => at.Title.Contains(search)
+                    || at.Content.Contains(search)
+                    ).Select(a => a.Id).ToList();
+                List<int> commentIds = db.Comments.Where(c => c.Content.Contains(search)).Select(com => com.TopicId).ToList();
+                List<int> mergedIds = topicIds.Union(commentIds).ToList();
+                topics = db.Topics.Where(topic => mergedIds.Contains(topic.Id)).Include("Category").Include("User").OrderBy(a => a.Date);
+                //why include not working???
+            }
+
+
+
+
+            var totalItems = topics.Count();
             ViewBag.Topics = topics;
+            var currentPage = Convert.ToInt32(Request.Params.Get("page"));
+            var offset = 0;
+
+
+
+
+            if (!currentPage.Equals(0))
+            {
+                offset = (currentPage - 1) * this._perPage;
+            }
+
+            var paginatedArticles = topics.Skip(offset).Take(this._perPage);
+
             if (TempData.ContainsKey("message"))
             {
                 ViewBag.message = TempData["message"].ToString();
@@ -30,8 +65,16 @@ namespace GamingForum.Controllers
                 ViewBag.afisareButoane = true;
             }
 
+            ViewBag.total = totalItems;
+            ViewBag.lastPage = Math.Ceiling((float)totalItems / (float)this._perPage);
+            ViewBag.Topics = paginatedArticles;
             return View();
         }
+
+
+
+
+
         //[Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Show(int id)
         {
