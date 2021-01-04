@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+<div class="panel-heading">
+    <h1>Pagina ta de profil</h1>
+    
+
+    <div class="panel-body">
+        <img src="@Url.Action("ProfilePicture","Profile")" style="width:160px;height:160px;background:#FFFFFF;
+        margin:auto;
+        border-radius:100px;
+        padding:6px;" />
+        <br />
+        <br />
+        <p class="text-nowrap">@ViewBag.username</p>
+        <br />
+        <p class="text-nowrap">@ViewBag.About</p">
+    </div>
+</div>
+<h2>Show</h2>
+

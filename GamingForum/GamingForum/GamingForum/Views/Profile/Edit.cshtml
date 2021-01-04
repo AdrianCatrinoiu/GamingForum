@@ -1,0 +1,49 @@
+﻿@model GamingForum.Models.Profile
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="panel-heading">
+    <h1>Modifica pagina ta de profil</h1>
+    <br />   
+    <div class="panel-body" style="align-content:center">
+
+        <div class="badge" style="background-color:gainsboro;color:black;width:100%;align-content:center">
+            @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+            {
+                <br />
+                <br />
+
+                @Html.HiddenFor(m => m.Id)
+
+                @Html.Label("Image", "Profile Picture")
+                <br />
+                <br />
+
+                <label>
+                    <div class="coll-md-10">
+                        <input type="file" name="ProfilePicture" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+
+                    </div>
+                </label>
+                <br />
+                <br />
+
+                @Html.Label("About", "Despre Mine")
+                <br />
+                <br />
+                <label>
+                    @Html.TextArea("About", new { htmlAttributes = new { @class = "form-control",@style="height:200px" } })
+                </label>
+                @Html.ValidationMessage("About", null, new { @class = "text-danger" })
+                <br />
+                <br />
+
+                <button class="btn btn-sm btn-success" type="submit">Modifica profil</button>
+            }
+        </div>
+    </div>
+
+
+</div>
+

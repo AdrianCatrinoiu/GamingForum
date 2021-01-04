@@ -23,12 +23,17 @@
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("Admin"))
                     {
-                        
+
                         <li>@Html.ActionLink("Category", "Index", "Categories")</li>
                         <li>@Html.ActionLink("User", "Index", "User")</li>
 
                     }
-                        <li>@Html.ActionLink("Topics", "Index", "Topics")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+
+                    }
+                    <li>@Html.ActionLink("Topics", "Index", "Topics")</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")

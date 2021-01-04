@@ -10,6 +10,7 @@ namespace GamingForum.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "GamingForum.Models.ApplicationDbContext";
         }
 

@@ -1,0 +1,30 @@
+﻿@model GamingForum.Models.Profile
+@{
+    ViewBag.Title = "New";
+}
+<div class="panel-heading">
+    <h1>Creare profil</h1>
+    <div class="badge" style="background-color:gainsboro;color:black;width:100%">
+
+        @using (Html.BeginForm("New", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.Label("About", "Despre Mine")
+            <br />
+            @Html.TextBox("About", null, new { @class = "form-control" })
+            @Html.ValidationMessage("About", null, new { @class = "text-danger" })
+
+            @Html.Label("Image", "Profile Picture")
+            <br />
+            @Html.LabelFor(m => m.Image, new { @class = "col-md-2 control-label" })
+            <div class="coll-md-10">
+                <input type="file" name="ProfilePicture" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+
+            </div>
+            <br />
+            <br />
+            <button class="btn btn-sm btn-success" type="submit">Creeaza profil</button>
+        }
+    </div>
+
+</div>
+

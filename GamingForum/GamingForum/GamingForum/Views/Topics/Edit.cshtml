@@ -6,11 +6,7 @@
 
 <h2>Edit</h2>
 @using (Html.BeginForm(actionName: "Edit", controllerName: "Topics"))
-{
-    if (Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
-    {
-
-    }
+{ 
 
     @Html.HttpMethodOverride(HttpVerbs.Put)
     <br />

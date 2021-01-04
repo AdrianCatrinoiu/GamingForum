@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel-heading">
+    <h1>Pagina ta de profil</h1>
+    <br />
+    @if(ViewBag.hasProfile==true)
+    {
+    <div class="panel-body">
+        <div class="badge" style="background-color:gainsboro;color:black;width:100%">
+            <br />
+            <br />
+            <img src="@Url.Action("ProfilePicture","Profile")" style="width:160px;height:160px;background:#FFFFFF;
+        margin:auto;
+        border-radius:100px;
+        padding:6px;" />
+            <br />
+            <br />
+            <p>Username: @ViewBag.username</p>
+            <br />
+            <br />
+            <p>About: @ViewBag.About</p>
+            <br />
+            <br />
+            <a class="btn btn-primary" href="/Profile/Edit">Modifica profilul</a>
+        </div>
+
+    </div>
+    }
+    else
+    {
+    <a class="btn btn-primary" href="/Profile/New">Creeaza un profil</a>
+
+    }
+
+
+</div>
