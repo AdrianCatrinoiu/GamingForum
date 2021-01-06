@@ -8,9 +8,8 @@
         alert("@ViewBag.message");
     </script>
 }
-
+<br />
 <style>
-
     .hey {
         background-color: rgba(255, 180, 76, 0.76);
         border-radius: 0px;
@@ -29,17 +28,19 @@
     .titlu {
         background-color: #3e4d73;
         border: 5px solid #050938;
-        border-radius: 40px;
+        border-radius: 40px 0px 40px 0px;
         text-align: center;
         font-size: 50px;
         padding: 30px;
         color: white;
         font-weight: bold;
         font-family: Papyrus;
+        padding-bottom:20px;
+        margin-bottom:20px;
     }
 
     .myButton {
-        box-shadow: inset 38px 0px 0px -12px #050938;
+        box-shadow: inset 50px 0px 0px -12px #050938;
         background-color: #477890;
         border-radius: 7px;
         border: 3px solid #050938;
@@ -64,19 +65,23 @@
             top: 1px;
         }
 </style>
-<br />
-
 <div class="titlu">
     GamingForum
     </br>
 </div>
 
 <body style="background-color:#deeaff;">
-    <div class="panel panel-body" style="background-color: #3e4d73; border: 5px solid #050938;">
-
+    <div class="panel panel-body" style="background-color: #3e4d73; border: 5px solid #050938;border-radius:7px;">
+        <div style="font-size:20px;margin-left:80%;padding-bottom:10px;">
+            @Html.DropDownList("Sortby", new SelectListItem[] { new SelectListItem()
+        { Text = "Sort by:", Value = "2" }, new SelectListItem()
+        { Text = "Sortare dupa id", Value = "0" }, new SelectListItem()
+        { Text = "Sortare dupa nume", Value = "1" }},
+        new { onchange = "document.location.href = '/Categories/Reorder/' + this.options[this.selectedIndex].value;" })
+        </div>
         @foreach (GamingForum.Models.Category category in ViewBag.Categories)
         {
-            <div class="panel panel-default" style="background-color: #3e4d73;border: 9px outset #1C6EA4;padding:10px;">
+            <div class="panel panel-default" style="background-color: #3e4d73;border: 9px outset #1C6EA4;border-radius:9px 0px 9px 0px;padding:10px;">
 
 
                 <div class="hey" style="">
@@ -105,11 +110,6 @@
 
 
 
-        @Html.DropDownList("Sortby", new SelectListItem[] { new SelectListItem()
-    { Text = "Sort by:", Value = "2" }, new SelectListItem()
-    { Text = "Sortare dupa id", Value = "0" }, new SelectListItem()
-    { Text = "Sortare dupa nume", Value = "1" }},
-    new { onchange = "document.location.href = '/Home/Reorder/' + this.options[this.selectedIndex].value;" })
 
     </div>
 

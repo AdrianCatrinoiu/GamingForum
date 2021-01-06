@@ -1,14 +1,17 @@
 ﻿@model GamingForum.Models.Topic
+
+<br />
+<br />
 <div class="panel panel-heading">
-    <a class="btn btn-info" href="/Topics/Index">Inapoi la topic-uri</a>
+    <a class="btn btn-info" href="/Topics/Index"><i class="glyphicon glyphicon-arrow-left"></i> Inapoi la topic-uri</a>
     @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
     {
-        <a class="btn btn-info" href="/Topics/New">Adauga un nou topic</a>
+    <a class="btn btn-info" href="/Topics/New"><i class="glyphicon glyphicon-plus"></i> Adauga un nou topic</a>
     }
         
 </div>
-
 <br />
+
 @if (!string.IsNullOrEmpty(ViewBag.message))
 {
     <script type="text/javascript">
@@ -21,8 +24,8 @@
         <div class="panel-footer">
             @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin||ViewBag.esteModerator)
             {
-                <a class="btn btn-success pull-left"
-                   href="/Topics/Edit/@ViewBag.Topic.Id">Modifica topic-ul</a>
+            <a class="btn btn-success pull-left"
+               href="/Topics/Edit/@ViewBag.Topic.Id"><i class="glyphicon glyphicon-check"></i> Modifica topic-ul</a>
             }
 
             @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
@@ -31,7 +34,7 @@
                     FormMethod.Post, routeValues: new { id = Model.Id }))
                 {
                     @Html.HttpMethodOverride(HttpVerbs.Delete)
-                    <button class="btn btn-danger pull-right" type="submit">Sterge Topic</button>
+            <button class="btn btn-danger pull-right" type="submit"><i class="glyphicon glyphicon-erase"></i> Sterge Topic</button>
                 }
             }
             <div class="clearfix"></div>
@@ -40,7 +43,7 @@
 
 
         <br />
-        <p>Comentarii:</p>
+        <p style="margin-left:10px;">  Comentarii:</p>
         @foreach (var comm in ViewBag.Topic.Comments)
         {
             <div class="container">
@@ -94,7 +97,7 @@ background: transparent" type="submit"></button>
                                     <br />
 
                                     <button class="btn btn-success " type="submit">
-                                        Adauga
+                                        <i class="glyphicon glyphicon-plus"></i> Adauga
                                         comentariu
                                     </button>
                                     

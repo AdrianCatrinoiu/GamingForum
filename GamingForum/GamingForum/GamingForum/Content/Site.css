@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #deeaff;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +23,55 @@ select,
 textarea {
     max-width: 280px;
 }
+.hey {
+    background-color: rgba(255, 180, 76, 0.76);
+    border-radius: 0px;
+    border: 5px solid #050938;
+    color: #fdfffc;
+    font-family: Arial;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px;
+    height: 45px;
+    width: 450px;
+    position: relative;
+    left: 30%;
+}
+
+.titlu {
+    background-color: #3e4d73;
+    border: 5px solid #050938;
+    border-radius: 40px;
+    text-align: center;
+    font-size: 50px;
+    padding: 30px;
+    color: white;
+    font-weight: bold;
+    font-family: Papyrus;
+}
+
+.myButton {
+    box-shadow: inset 38px 0px 0px -12px #050938;
+    background-color: #477890;
+    border-radius: 7px;
+    border: 3px solid #050938;
+    display: inline-block;
+    cursor: pointer;
+    color: #fdfffc;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0px 0px 0px 45px;
+    text-decoration: none;
+    height: 50px;
+    width: 100%;
+}
+
+    .myButton:hover {
+        background-color: #FF9B42;
+    }
+
+    .myButton:active {
+        position: relative;
+        top: 1px;
+    }

@@ -9,7 +9,7 @@
     @if(ViewBag.hasProfile==true)
     {
     <div class="panel-body">
-        <div class="badge" style="background-color:gainsboro;color:black;width:100%">
+        <div class="badge" style="background-color:#3e4d73;color:white;width:100%;padding-bottom:50px;font-size:20px;">
             <br />
             <br />
             <img src="@Url.Action("ProfilePicture","Profile")" style="width:160px;height:160px;background:#FFFFFF;
@@ -24,7 +24,7 @@
             <p>About: @ViewBag.About</p>
             <br />
             <br />
-            <a class="btn btn-primary" href="/Profile/Edit">Modifica profilul</a>
+            <a class="btn btn-primary" href="/Profile/Edit"><i class="glyphicon glyphicon-pencil"></i> Modifica profilul</a>
         </div>
 
     </div>

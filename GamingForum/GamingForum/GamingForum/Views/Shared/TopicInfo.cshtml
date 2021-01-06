@@ -1,12 +1,23 @@
 ﻿
-<div class="panel-heading">@Model.Title</div>
+<div class="panel-heading"><strong>@Model.Title</strong></div>
 <div class="panel-body">
-    <i class="glyphicon glyphicon-user"></i> <i>Topic scris de:</i> 
+    <i class="glyphicon glyphicon-user"></i> <i>Topic scris de:</i>
     <strong> @Model.User.UserName</strong>
     <br />
-    Continut topic: <strong>@Model.Content</strong>
-    <br />
+
+
+    
+
     <span class="label label-success">@Model.Date</span>
     <br />
+   
+
     <i class="glyphicon glyphicon-globe"></i> @Model.Category.CategoryName
+
+    <br />
+    <br />
+    Continut topic:
+    <div style="width:800px;text-align:left">
+        <strong>@Model.Content</strong>
+    </div>
 </div>

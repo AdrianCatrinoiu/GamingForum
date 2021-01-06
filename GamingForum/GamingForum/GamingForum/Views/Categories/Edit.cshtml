@@ -5,10 +5,14 @@
     @Html.HiddenFor(m => m.CategoryId)
     @Html.Label("CategoryName", "Denumire Categorie")
     <br/><br/>
-    @Html.Editor("CategoryName")
-    <br/>
+         <div class="form-control">
+             @Html.Editor("CategoryName")
+             <br />
+             <br />
+
+             <button type="submit"><i class="glyphicon glyphicon-check"></i> Modifica categorie</button>
+         </div>
 
 
 
-    <button type="submit">Modifica categorie</button>
 </form>

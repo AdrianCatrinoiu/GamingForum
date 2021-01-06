@@ -13,7 +13,7 @@
     @Html.Partial("CategoryInfo", Model)
     <form method="post" action="/Categories/Delete/@Model.CategoryId">
         @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button class="btn btn-danger" type="submit">Sterge categorie</button>
+        <button class="btn btn-danger" type="submit"><i class="glyphicon glyphicon-erase"></i> Sterge categorie</button>
     </form>
 
     <hr />

@@ -3,6 +3,31 @@
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.myButton {
+    box-shadow: inset 38px 0px 0px -12px #050938;
+    background-color: #477890;
+    border-radius: 7px;
+    border: 3px solid #050938;
+    display: inline-block;
+    cursor: pointer;
+    color: #fdfffc;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0px 0px 0px 45px;
+    text-decoration: none;
+    height: 50px;
+    width: 100%;
+}
+
+    .myButton:hover {
+        background-color: #FF9B42;
+    }
+
+    .myButton:active {
+        position: relative;
+        top: 1px;
+    }
 .btn-default,
 .btn-primary,
 .btn-success,

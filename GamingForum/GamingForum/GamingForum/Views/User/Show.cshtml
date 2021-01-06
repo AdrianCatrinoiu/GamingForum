@@ -4,7 +4,7 @@
     ViewBag.Title = "Detalii utilizator";
 }
 
-<ol class="breadcrumb">
+<ol class="breadcrumb" style="background-color:#deeaff">
     <li><h3>@ViewBag.Title</h3></li>
 </ol>
 
@@ -13,6 +13,7 @@
 <div class="panel-body">
 
     <i class="glyphicon glyphicon-envelope"></i> Email utilizator: <span class="label label-default">@Model.Email</span>
+    <br />
     <br />
     <i class="glyphicon glyphicon-th-list"></i> Rol utilizator: @ViewBag.roleName
 
@@ -36,7 +37,7 @@
         {
             @Html.HttpMethodOverride(HttpVerbs.Delete)
             <br />
-            <button class="btn btn-success" type="submit">Sterge utilizator</button>
+            <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-erase"></i> Sterge utilizator</button>
 
         }
     </div>

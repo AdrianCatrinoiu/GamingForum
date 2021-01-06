@@ -132,7 +132,6 @@ namespace GamingForum.Controllers
         public ActionResult Reorder(int id)
         {
             Globals.sortare = id;
-            TempData["message"] = "Categoria a fost sortata.";
 
             return RedirectToAction("Index");
         }
