@@ -264,6 +264,7 @@
     <Content Include="Views\Profile\New.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Show.cshtml" />
+    <Content Include="Views\Shared\TopicInfoSmall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

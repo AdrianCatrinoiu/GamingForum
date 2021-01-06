@@ -9,29 +9,91 @@
     </script>
 }
 
+<style>
 
-<h2>Afisare categorii</h2>
-<div class="panel panel-heading">
-    @Html.Label("CategoryName", "Nume Categorii:")
-
-</div>
-<br />
-<div class="panel panel-body">
-
-    @foreach (GamingForum.Models.Category category in ViewBag.Categories)
-    {
-
-        @Html.Partial("CategoryInfo", category)
-        <a class="btn btn-success" href="/Categories/Show/@category.CategoryId">Afisare categorie</a>
-        <a class="btn btn-success" href="/Categories/Edit/@category.CategoryId">Editeaza categorie</a>
-        <br /><br />
+    .titlu {
+        background-color: #3e4d73;
+        border: 5px solid #050938;
+        border-radius: 40px;
+        text-align: center;
+        font-size: 50px;
+        padding: 30px;
+        color: white;
+        font-weight: bold;
+        font-family: Papyrus;
     }
-    <br /><br /><br />
-    <a class="btn btn-default" href="/Categories/New">Adauga categorie</a>
 
+    .myButton {
+        box-shadow: inset 38px 0px 0px -12px #050938;
+        background-color: #477890;
+        border-radius: 7px;
+        border: 3px solid #050938;
+        display: inline-block;
+        cursor: pointer;
+        color: #fdfffc;
+        font-family: Arial;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0px 0px 0px 45px;
+        text-decoration: none;
+        height: 50px;
+        width: 100%;
+    }
+
+        .myButton:hover {
+            background-color: #FF9B42;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+</style>
+<br />
+
+<div class="titlu">
+    GamingForum
+    </br>
 </div>
-@Html.DropDownList("Sortby", new SelectListItem[] { new SelectListItem()
-{ Text = "Sort by:", Value = "2" }, new SelectListItem()
-{ Text = "Sortare dupa id", Value = "0" }, new SelectListItem()
-{ Text = "Sortare dupa nume", Value = "1" }},
-new { onchange = "document.location.href = '/Categories/Reorder/' + this.options[this.selectedIndex].value;" })
+
+<body style="background-color:#deeaff;">
+    <div class="panel panel-body" style="background-color: #3e4d73; border: 5px solid #050938;">
+
+        @foreach (GamingForum.Models.Category category in ViewBag.Categories)
+        {
+            <div class="panel panel-default" style="background-color: #3e4d73;border: 9px outset #1C6EA4;padding:10px;">
+
+                <a href="/Categories/Show/@category.CategoryId" style="color:white;">
+                    @Html.Partial("CategoryInfo", category)
+                </a>
+
+                @foreach (GamingForum.Models.Topic topic in ViewBag.Topics)
+                {
+                    if (category.CategoryId == topic.CategoryId)
+                    {
+                        <div class="panel panel-default" style="height:40px;background-color:#3e4d73;border: 0px">
+                            <a class="myButton" href="/Topics/Show/@topic.Id">@Html.Partial("TopicInfoSmall", topic)</a>
+                        </div>
+                    }
+                }
+
+
+                <br /><br />
+            </div>
+        }
+
+        <br /><br /><br />
+        <a class="btn btn-success" href="/Categories/New"><i class="glyphicon glyphicon-plus"></i></a>
+
+
+
+
+        @Html.DropDownList("Sortby", new SelectListItem[] { new SelectListItem()
+    { Text = "Sort by:", Value = "2" }, new SelectListItem()
+    { Text = "Sortare dupa id", Value = "0" }, new SelectListItem()
+    { Text = "Sortare dupa nume", Value = "1" }},
+    new { onchange = "document.location.href = '/Categories/Reorder/' + this.options[this.selectedIndex].value;" })
+
+    </div>
+
+</body>

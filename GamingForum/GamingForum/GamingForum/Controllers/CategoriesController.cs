@@ -32,6 +32,10 @@ namespace GamingForum.Controllers
                                  orderby category.CategoryName
                                  select category;
                 ViewBag.Categories = categories;
+
+                var topics = db.Topics.Include("Category").Include("User").OrderBy(a => a.Title);
+                ViewBag.Topics = topics;
+
             }
             if (Globals.sortare == 0)
             {
@@ -39,6 +43,9 @@ namespace GamingForum.Controllers
                                  orderby category.CategoryId
                                  select category;
                 ViewBag.Categories = categories;
+
+                var topics = db.Topics.Include("Category").Include("User").OrderBy(a => a.Title);
+                ViewBag.Topics = topics;
             }
 
             return View();
@@ -62,7 +69,8 @@ namespace GamingForum.Controllers
         {
             try
             {
-                if (ModelState.IsValid) {
+                if (ModelState.IsValid)
+                {
 
                     db.Categories.Add(category);
                     db.SaveChanges();
@@ -91,7 +99,7 @@ namespace GamingForum.Controllers
         [HttpPut]
         public ActionResult Edit(int id, Category requestCategory)
         {
-            try 
+            try
             {
                 Category category = db.Categories.Find(id);
                 if (ModelState.IsValid)//delete if it won't work
