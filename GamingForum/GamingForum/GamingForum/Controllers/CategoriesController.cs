@@ -8,10 +8,7 @@ using System.Web.Mvc;
 namespace GamingForum.Controllers
 {
 
-    static class Globals
-    {
-        public static int sortare = 0;
-    }
+
 
     [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
